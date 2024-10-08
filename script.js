@@ -1,4 +1,4 @@
-const div = document.getElementById("result")
+const div = document.getElementById("result");
 
 function adicao(button){
 
@@ -25,26 +25,36 @@ function subtracao(button){
     div.textContent += value;
 }
 
+function captureDot(button){
+    
+    div.textContent += ".";
+}
+
 function captureValue(button){
 
     const value = button.textContent;
-    div.textContent += ""+value;
+    div.textContent += value;
 }
 
 
 function result() {
     let expression = div.textContent;
-    let result;
+    let result ;
 
     try {
         // a função eval tenta calcular a expressão matemática e se a expressoão for inválida, é pega pelo catch e mostrado o erro invalid operation.
         result = eval(expression);
     } catch (e) {
-        div.textContent = "invalid operation";
+
+        div.textContent = "invalid_operation";
         return;
     }
 
-    div.textContent = result;
+    if(isNaN(result) || result === undefined || result.toString() === "Infinity"){
+        div.textContent = "invalid_operation";
+    }else{
+        div.textContent = result;
+    }
 }
 
 function reset(){
